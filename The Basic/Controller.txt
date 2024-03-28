@@ -1,0 +1,31 @@
+1. Sử dụng controller giúp tổ chức logic xử lý yêu cầu một cách cấu trúc
+Controller cho phép nhóm các logic xử lý liên quan vào một lớp duy nhất. 
+Ví dụ, một lớp UserController có thể xử lý tất cả các yêu cầu liên quan đến người dùng, bao gồm hiển thị, tạo, cập nhật và xóa người dùng.
+Theo mặc định, các controller được lưu trữ trong thư mục app/Http/Controllers.
+
+2. Khi viết một lớp controller à phương thức, có thể định nghĩa một route cho phương thức của controller:
+
+use App\Http\Controllers\UserController;
+
+Route::get('/user/{id}', [UserController::class, 'show']);
+
+3.Nếu một hành động của controller đặc biệt phức tạp, có thể tạo ra một lớp controller hoàn toàn dành cho hành động đó bằng cách định nghĩa một phương thức __invoke bên trong controller:
+
+namespace App\Http\Controllers;
+
+class ProvisionServer extends Controller
+{
+    /**
+     * Cung cấp một máy chủ web mới.
+     */
+    public function __invoke()
+    {
+        // ...
+    }
+}
+
+Khi đăng ký các route, chỉ cần chuyển tên của controller
+
+use App\Http\Controllers\ProvisionServer;
+ 
+Route::post('/server', ProvisionServer::class);

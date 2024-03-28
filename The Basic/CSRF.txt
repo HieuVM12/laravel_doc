@@ -1,0 +1,9 @@
+1. CSRF (Cross-Site Request Forgery) là một loại tấn công độc hại trong đó các lệnh không ủy quyền được thực hiện thay mặt cho người dùng đã xác thực. 
+Laravel cung cấp cơ chế dễ dàng để bảo vệ ứng dụng khỏi các cuộc tấn công CSRF.
+
+Bất cứ khi nào định nghĩa một biểu mẫu HTML "POST", "PUT", "PATCH", hoặc "DELETE" trong ứng dụng,
+nên bao gồm một trường ẩn _token CSRF trong biểu mẫu để middleware bảo vệ CSRF có thể xác minh yêu cầu.
+
+<form method="POST" action="/profile">
+    @csrf
+</form>

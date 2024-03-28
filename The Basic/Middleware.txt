@@ -1,0 +1,8 @@
+1. Middleware một đoạn code thực thi vào trước khi chương trình chạy hoặc sau khi xử lý xong.
+
+Middleware có thể thực hiện nhiều nhiệm vụ khác ngoài xác thực
+Ví dụ: Xử lý sesssion dể điều hướng multilanguage.
+
+có thể đăng ký middleware để chạy trong mỗi yêu cầu HTTP hoặc chỉ định cho từng route cụ thể
+Middleware cũng có thể nhận các tham số bổ sung, và các tham số này sẽ được chuyển đến middleware sau đối số $next.
+cũng có thể loại trừ middleware từ một nhóm các route hoặc toàn bộ nhóm.

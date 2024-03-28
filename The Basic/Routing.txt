@@ -1,0 +1,48 @@
+1.Trong Laravel, bạn có thể định nghĩa các route cơ bản bằng cách sử dụng closure và URI. Ví dụ:
+
+use Illuminate\Support\Facades\Route;
+Route::get('/greeting', function () {
+    return 'Hello World';
+});
+
+2.Các route được định nghĩa trong các file route của ứng dụng Laravel, 
+thường là routes/web.php cho các route web và routes/api.php cho các route API. 
+
+3.Có thể đăng ký các route cho bất kỳ phương thức HTTP nào sử dụng các phương thức như 
+Route::get, Route::post, Route::put, Route::patch, Route::delete, Route::options
+
+Route::get($uri, $callback);
+Route::post($uri, $callback);
+Route::put($uri, $callback);
+Route::patch($uri, $callback);
+Route::delete($uri, $callback);
+Route::options($uri, $callback);
+
+4. Cũng có thể đăng ký route cho nhiều phương thức hoặc tất cả các phương thức HTTP bằng cách sử dụng Route::match hoặc Route::any. Ví dụ:
+Route::match(['get', 'post'], '/', function () {
+    // ...
+});
+ 
+Route::any('/', function () {
+    // ...
+});
+
+5.có thể sử dụng các route parameters để bắt và sử dụng các đoạn của URI. Ví dụ
+
+Route::get('/user/{id}', function (string $id) {
+    return 'User '.$id;
+});
+
+6.Regular
+có thể hạn chế định dạng của các route parameters bằng cách sử dụng phương thức where trên một instance của route. 
+
+Route::get('/user/{name}', function (string $name) {
+    // ...
+})->where('name', '[A-Za-z]+');
+
+
+7. đặt tên route dễ dang
+
+Route::get('/user/profile', function () {
+    // ...
+})->name('profile');

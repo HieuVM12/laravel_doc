@@ -1,0 +1,72 @@
+1. Yêu cầu:
+PHP >= 8.2
+Ctype PHP Extension
+cURL PHP Extension
+DOM PHP Extension
+Fileinfo PHP Extension
+Filter PHP Extension
+Hash PHP Extension
+Mbstring PHP Extension
+OpenSSL PHP Extension
+PCRE PHP Extension
+PDO PHP Extension
+Session PHP Extension
+Tokenizer PHP Extension
+XML PHP Extension
+
+2. cấu hình server
+Nginx
+
+server {
+    listen 80;
+    listen [::]:80;
+    server_name example.com;
+    root /srv/example.com/public;
+ 
+    add_header X-Frame-Options "SAMEORIGIN";
+    add_header X-Content-Type-Options "nosniff";
+ 
+    index index.php;
+ 
+    charset utf-8;
+ 
+    location / {
+        try_files $uri $uri/ /index.php?$query_string;
+    }
+ 
+    location = /favicon.ico { access_log off; log_not_found off; }
+    location = /robots.txt  { access_log off; log_not_found off; }
+ 
+    error_page 404 /index.php;
+ 
+    location ~ \.php$ {
+        fastcgi_pass unix:/var/run/php/php8.2-fpm.sock;
+        fastcgi_param SCRIPT_FILENAME $realpath_root$fastcgi_script_name;
+        include fastcgi_params;
+    }
+ 
+    location ~ /\.(?!well-known).* {
+        deny all;
+    }
+}
+
+3.Tối ưu hóa
+Khi triển khai, có nhiều loại tệp cần lưu vào bộ nhớ đệm bao gồm cấu hình, event, routes, views 
+Laravel cung câp lệnh optimize thuận tiện lưu trữ các tệp này
+
+php artisan optimize
+
+xóa bộ nhớ đêm được tạo bởi optimize:
+
+php artisan optimize:clear
+
+4. Cấu hình bộ nhớ đệm
+đảm bảo chạy lệnh config:cache trong quá trình triển khai
+php artisan config:cache
+giúp tập hợp tất cả các tệp cấu hình của laravel thành 1 tệp duy nhất được lưu trong bộ nhớ đệm,
+giảm đáng kể số lần di chuyển phải thực hiện khi tải các giá trị cấu hình
+
+5. Event, Router, View
+php artisan event:cache
+php artisan route:cache
+php artisan view:cache

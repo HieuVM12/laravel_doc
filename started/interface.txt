@@ -1,0 +1,12 @@
+1. PHP và Blade
+blade cung cấp cú pháp ngắn gọn, thuận tiện hiển thị dữ liệu
+
+ví dụ:
+<div>
+    @foreach ($users as $user)
+        Hello, {{ $user->name }} <br />
+    @endforeach
+</div>
+
+2. Liveware 
+tạo các thành phần hiển thị 1 phần riêng biệt của giao diện

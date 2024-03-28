@@ -1,0 +1,21 @@
+1.Thư mục gốc (Root Directory): Chứa các tệp quan trọng như composer.json, .env và artisan, là điểm vào của ứng dụng.
+
+2.Thư mục App (App Directory): Chứa mã lõi bao gồm các controller, model, middleware và nhiều hơn nữa. Nó được autoload thông qua Composer.
+
+3.Thư mục Bootstrap (Bootstrap Directory): Chứa app.php để khởi tạo framework và thư mục cache để tối ưu hóa hiệu suất.
+
+4.Thư mục Config (Config Directory): Chứa các tệp cấu hình ứng dụng.
+
+5.Thư mục Database (Database Directory): Chứa các file di chuyển cơ sở dữ liệu, các mẫu model, seeds và tùy chọn là một cơ sở dữ liệu SQLite.
+
+6.Thư mục Public (Public Directory): Điểm vào cho các yêu cầu, chứa index.php và lưu trữ tài sản như hình ảnh, JavaScript và CSS.
+
+7.Thư mục Resources (Resources Directory): Chứa các view và tài sản chưa được biên soạn như CSS và JavaScript.
+
+8.Thư mục Routes (Routes Directory): Chứa các định nghĩa route, với web.php cho các route web và console.php cho các lệnh console.
+
+9.Thư mục Storage (Storage Directory): Chứa các logs, các template Blade đã biên soạn, các file phiên, caches, vv. Chia thành các thư mục app, framework và logs.
+
+10.Thư mục Tests (Tests Directory): Chứa các bài kiểm tra tự động, bao gồm bài kiểm tra đơn vị và tính năng.
+
+11.Thư mục Vendor (Vendor Directory): Chứa các phụ thuộc Composer.

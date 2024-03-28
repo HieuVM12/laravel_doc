@@ -1,0 +1,8 @@
+Laravel breeze là triển khai tối thiểu đơn giản nhất tất cả các tính năng xác thực của Laravel
+Bao gồm : 
+-đăng nhập
+-đăng ký
+-đặt lại mật khẩu
+-xác minh email
+-xác nhận mật khẩu
+-trang hồ sơ đơn giản để cập nhật tên, email và mật khẩu
