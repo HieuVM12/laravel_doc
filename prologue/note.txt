@@ -75,7 +75,8 @@ php artisan make:trait      --- tạo đặc điểm
 Laravel 11 hỗ trợ xác định các phôi của mô hình của bạn bằng cách sử dụng một phương thức thay vì thuộc tính. Điều này cho phép các định nghĩa truyền được sắp xếp hợp lý, trôi chảy, đặc biệt khi sử dụng các diễn biến có đối số:
 
 18. Kiểm tra CSDL và cải tiến hoạt động lược đồ
-Laravel 11 cung cấp các phương thức kiểm tra và vận hành lược đồ cơ sở dữ liệu bổ sung, bao gồm sửa đổi, đổi tên và loại bỏ các cột. Hơn nữa, các loại không gian nâng cao, tên lược đồ không mặc định và các phương thức lược đồ gốc để thao tác bảng, dạng xem, cột, chỉ mục và khóa ngoại đều được cung cấp:
+Laravel 11 cung cấp các phương thức kiểm tra và vận hành lược đồ cơ sở dữ liệu bổ sung, bao gồm sửa đổi, đổi tên và loại bỏ các cột.
+Hơn nữa, các loại không gian nâng cao, tên lược đồ không mặc định và các phương thức lược đồ gốc để thao tác bảng, dạng xem, cột, chỉ mục và khóa ngoại đều được cung cấp:
 use Illuminate\Support\Facades\Schema;
  
 $tables = Schema::getTables();

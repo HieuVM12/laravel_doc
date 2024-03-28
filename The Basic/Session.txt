@@ -1,0 +1,34 @@
+1.Vì các ứng dụng dựa trên HTTP là không trạng thái, phiên (sessions) cung cấp một cách để lưu trữ thông tin về người dùng qua nhiều yêu cầu. 
+Thông tin người dùng đó thường được đặt trong một nơi lưu trữ / backend có thể truy cập từ các yêu cầu tiếp theo.
+
+2.Laravel đi kèm với nhiều backend phiên mà được truy cập thông qua một API thống nhất 
+Hỗ trợ cho các backend phổ biến như Memcached, Redis và cơ sở dữ liệu được bao gồm.
+
+3.Cấu hình
+File cấu hình session của ứng dụng của bạn được lưu tại config/session.php. 
+Mặc định, Laravel được cấu hình để sử dụng trình điều khiển phiên cơ sở dữ liệu.
+
+4.Tùy chọn cấu hình trình điều khiển phiên xác định nơi dữ liệu phiên sẽ được lưu trữ cho mỗi yêu cầu. 
+Laravel bao gồm một loạt các trình điều khiển:
+
+file: phiên được lưu trữ trong storage/framework/sessions.
+cookie: phiên được lưu trữ trong các cookie an toàn, được mã hóa.
+database: phiên được lưu trữ trong cơ sở dữ liệu liên kết.
+memcached / redis: phiên được lưu trữ trong một trong những nơi lưu trữ dựa trên bộ nhớ đệm này.
+dynamodb: phiên được lưu trữ trong AWS DynamoDB.
+array: phiên được lưu trữ trong một mảng PHP và sẽ không được lưu trữ lâu dài.
+
+5. Tương tác với session
+* Lấy dữ liệu
+
+ $value = $request->session()->get('key');
+
+* Lưu dữ liệu
+
+ // Via a request instance...
+$request->session()->put('key', 'value');
+ 
+// Via the global "session" helper...
+session(['key' => 'value']);
+
+*   

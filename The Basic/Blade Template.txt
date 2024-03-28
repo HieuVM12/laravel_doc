@@ -1,0 +1,4 @@
+1. Blade là một hệ thống template đơn giản nhưng mạnh mẽ đi kèm với Laravel. 
+Khác với một số hệ thống template PHP khác, Blade không hạn chế bạn từ việc sử dụng mã PHP thuần trong các template
+
+2.tất cả các template Blade đều được biên dịch thành mã PHP thuần và được cache cho đến khi chúng được sửa đổi, 

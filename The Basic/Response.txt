@@ -1,0 +1,63 @@
+1. để tạo các phản hồi từ routes và controllers, có thể sử dụng nhiều cách khác nhau.
+
+C1: trả về chuỗi và mảng. Ví dụ:
+
+Route::get('/', function () {
+    return 'Xin chào';
+});
+
+Route::get('/', function () {
+    return [1, 2, 3];
+});
+
+
+c2: trả về đối tượng phản hồi
+
+Route::get('/home', function () {
+    return response('Xin chào', 200)
+                  ->header('Content-Type', 'text/plain');
+});
+
+use App\Models\User;
+
+Route::get('/user/{user}', function (User $user) {
+    return $user;
+});
+
+c3: trả về phản hồi đính kèm headers
+
+return response($content)
+            ->withHeaders([
+                'Content-Type' => $type,
+                'X-Header-One' => 'Header Value',
+                'X-Header-Two' => 'Header Value',
+            ]);
+
+c4: đính kèm cookie
+
+return response('Hello World')->cookie(
+    'name', 'value', $minutes
+);
+
+c5: chuyển hướng
+
+Route::get('/dashboard', function () {
+    return redirect('home/dashboard');
+});
+
+c6: trả về json
+
+return response()->json([
+    'name' => 'Abigail',
+    'state' => 'CA',
+]);
+
+c7: trả về tải xuống
+return response()->download($pathToFile);
+ 
+return response()->download($pathToFile, $name, $headers);
+
+c8: trả về file
+return response()->file($pathToFile);
+ 
+return response()->file($pathToFile, $headers);

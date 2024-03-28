@@ -1,0 +1,9 @@
+Views phân tách logic của controller / ứng dụng khỏi logic trình bày và được lưu trữ trong thư mục resources/views.
+
+Khi sử dụng Laravel, các mẫu view thường được viết bằng ngôn ngữ Blade templating. Ví dụ:
+
+<html>
+    <body>
+        <h1>Hello, {{ $name }}</h1>
+    </body>
+</html>

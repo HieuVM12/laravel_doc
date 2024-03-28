@@ -1,0 +1,9 @@
+1. Dùng để xác thực đầu vào
+Phương pháp phổ biến nhất là sử dụng phương thức validate có sẵn trên tất cả các yêu cầu HTTP đến.
+
+Ví dụ:
+
+$validatedData = $request->validate([
+    'title' => ['required', 'unique:posts', 'max:255'],
+    'body' => ['required'],
+]);

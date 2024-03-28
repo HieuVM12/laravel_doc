@@ -1,0 +1,35 @@
+1.Lớp của Laravel Illuminate\Http\Requestcung cấp một cách hướng đối tượng để tương tác với yêu cầu HTTP hiện tại 
+đang được ứng dụng của bạn xử lý cũng như truy xuất dữ liệu đầu vào, cookie và các tệp đã được gửi cùng với yêu cầu.
+
+2. Tương tác với Request
+Truy cập request
+Ví dụ:
+
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+
+class UserController extends Controller
+{
+    /**
+     * Lưu một người dùng mới.
+     */
+    public function store(Request $request): RedirectResponse
+    {
+        $name = $request->input('name');
+ 
+        // Lưu người dùng...
+ 
+        return redirect('/users');
+    }
+}
+
+3. Lấy đường dẫn request
+Phương thức path trả về thông tin đường dẫn của yêu cầu
+$uri = $request->path();
+
+4. Kiểm Tra Đường Dẫn / Route: Phương thức is cho phép bạn xác minh rằng đường dẫn yêu cầu đang đến khớp với một mẫu nhất định. 
+if ($request->is('admin/*')) {
+    // ...
+}
+
+Lấy được nhiều thứ ...
