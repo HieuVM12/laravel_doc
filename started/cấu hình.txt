@@ -1,0 +1,56 @@
+1. Cấu hình môi trường
+sử dụng file .env để lưu trữ các biến môi trường
+
+2. Truy xuất cấu hình môi trường
+Tất cả các biến được liệt kê trong file .env sẽ được tải vào $_ENV.Có thể sử dụng hàm env truy xuất giá trị các biến này
+
+3. Xác định môi trường hiện tại
+Môi trường ứng dụng hiện tại được xác định thông 
+qua biến APP_ENV từ file .env
+Có thể truy xuất giá trị này thông qua phương thức enviroment 
+use Illuminate\Support\Facades\App;
+$environment = App::environment();
+
+4. Mã hóa tập tin môi trường
+Các tệp môi trường không được mã hóa sẽ không bao giờ được lưu trữ trong kiểm soát nguồn. Tuy nhiên, Laravel cho phép bạn mã hóa các tệp môi trường để chúng có thể được thêm vào kiểm soát nguồn một cách an toàn cùng với phần còn lại của ứng dụng
+để mã hóa :
+php artisan env:encrypt
+để giải mã:
+php artisan env:decrypt
+
+5.Truy cập giá trị config
+
+use Illuminate\Support\Facades\Config;
+ 
+$value = Config::get('app.timezone');
+ 
+$value = config('app.timezone');
+ 
+// Retrieve a default value if the configuration value does not exist...
+$value = config('app.timezone', 'Asia/Seoul');
+Config::set('app.timezone', 'America/Chicago');
+ 
+config(['app.timezone' => 'America/Chicago']);
+
+6. Cấu hình bộ nhớ đệm
+để tăng tốc độ ứng dụng, lưu tất cả các file cấu hình vào 1 tệp duy nhất bằng lệnh artisan 
+php artisan config:cache
+
+Lệnh config:clear có thể được sử dụng để xóa cấu hình được lưu trong bộ nhớ cache:
+php artisan config:clear
+
+7. Cấu hình xuất bản
+sử dụng config:publish lệnh Artisan để xuất bản bất kỳ tệp cấu hình nào không được xuất bản theo mặc định:
+php artisan config:publish
+ 
+php artisan config:publish --all
+
+
+8. Chế độ bảo trì
+bật chế độ bảo trì sẽ trả về trạng thái 503:
+php artisan down
+
+tắt chế độ bảo trì:
+php artisan up
+
+

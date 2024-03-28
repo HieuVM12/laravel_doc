@@ -1,0 +1,85 @@
+1. Laravel 11 được cải thiện từ laravel 10.x bằng cách giới thiệu cấu trúc hợp lý, giới hạn tốc độ
+định tuyến, mã hóa, cải thiện kiểm thử hàng đợi, gửi nhận mail, kiểm tra validate, lệnh artisan mới,...
+
+2. laravel 11 yêu cầu phiên bản php tối thiểu là 8.2
+
+3. cấu trúc hợp lý
+- Tệp bootstrap/app.phpđã được khôi phục dưới dạng tệp cấu hình ứng dụng mã đầu tiên.
+Tệp này chứa nhiều cài đặt hành vi ứng dụng cấp cao trước đây nằm rải rác trong cấu trúc tệp ứng dụng
+
+4. Service Providers
+Thay vì cấu trúc ứng dụng Laravel mặc định chứa năm nhà cung cấp dịch vụ, Laravel 11 chỉ bao gồm một tệp AppServiceProvider. 
+Chức năng của các nhà cung cấp dịch vụ trước đó đã được tích hợp vào tệp bootstrap/app.php, được framework xử lý tự động hoặc có thể được đặt trong tệp AppServiceProvider.
+
+5. Api và routing
+Các tệp định tuyến api.php và channels.php định tuyến không còn xuất hiện theo mặc định
+Phải tạo bằng câu lệnh:
+
+php artisan install:api
+php artisan install:broadcasting
+
+6. Middleware
+Trước đây, các ứng dụng Laravel mới bao gồm chín middleware.
+Trong Laravel 11, các middleware này đã được di chuyển vào trong framework chính mình, để chúng không làm tăng kích thước của cấu trúc ứng dụng.
+Các phương thức mới cho việc tùy chỉnh hành vi của các middleware này đã được thêm vào framework và có thể được gọi từ tệp bootstrap/app.php của ứng dụng
+Vì tất cả phần mềm trung gian có thể được tùy chỉnh dễ dàng thông qua tệp bootstrap/app.php nên nhu cầu về lớp "kernel" HTTP riêng biệt đã bị loại bỏ.
+
+7. Schedule
+tác vụ được lập lịch có thể được xác định trực tiếp trong tệp routes/console.php,loại bỏ sự cần thiết của một lớp "kernel"
+use Illuminate\Support\Facades\Schedule;
+Schedule::command('emails:send')->daily();
+
+8. Exception Handling 
+có thể tùy chỉnh từ tệp bootstrap/app.php
+
+9. Base Controller Class
+đã được đơn giản hóa
+
+10. Laravel Reverb
+mang khả năng giao tiếp websocket thời gian thực cực nhanh và có thể mở rộng trực tiếp và khả năng tích hợp 
+php artisan reverb:start
+
+11. Giới hạn tốc độ mỗi giây
+hỗ trợ giới hạn tốc độ "mỗi giây" cho tất cả các giới hạn tốc độ, bao gồm cả giới hạn tốc độ cho các yêu cầu HTTP và các công việc được xếp hàng đợi. 
+Trước đây, giới hạn tốc độ của Laravel bị giới hạn ở mức độ chi tiết "mỗi phút":
+
+RateLimiter::for('invoices', function (Request $request) {
+    return Limit::perSecond(1);
+});
+
+12. Định tuyến 
+
+13. Tự động hồi phục mật khẩu
+
+14. Xác thưcj nhanh
+
+$name = text('What is your name?', validate: [
+    'name' => 'required|min:3|max:255',
+]);
+
+15. Kiểm tra tương tác hàng đợi 
+Trước đây, việc cố gắng kiểm tra xem một công việc trong hàng đợi đã được giải phóng, bị xóa hay bị lỗi theo cách thủ công là rất cồng kềnh.
+có thể dễ dàng kiểm tra các tương tác hàng đợi này bằng phương thức withFakeQueueInteractions:
+use App\Jobs\ProcessPodcast;
+$job = (new ProcessPodcast)->withFakeQueueInteractions();
+$job->handle();
+$job->assertReleased(delay: 30);
+
+16. Lệnh mới
+php artisan make:class  --- tạo lớp mới
+php artisan make:enum   --- tạo enum
+php artisan make:interface  --- tạo giao diện
+php artisan make:trait      --- tạo đặc điểm
+
+17. Cải tiến
+Laravel 11 hỗ trợ xác định các phôi của mô hình của bạn bằng cách sử dụng một phương thức thay vì thuộc tính. Điều này cho phép các định nghĩa truyền được sắp xếp hợp lý, trôi chảy, đặc biệt khi sử dụng các diễn biến có đối số:
+
+18. Kiểm tra CSDL và cải tiến hoạt động lược đồ
+Laravel 11 cung cấp các phương thức kiểm tra và vận hành lược đồ cơ sở dữ liệu bổ sung, bao gồm sửa đổi, đổi tên và loại bỏ các cột. Hơn nữa, các loại không gian nâng cao, tên lược đồ không mặc định và các phương thức lược đồ gốc để thao tác bảng, dạng xem, cột, chỉ mục và khóa ngoại đều được cung cấp:
+use Illuminate\Support\Facades\Schema;
+ 
+$tables = Schema::getTables();
+$views = Schema::getViews();
+$columns = Schema::getColumns('users');
+$indexes = Schema::getIndexes('users');
+$foreignKeys = Schema::getForeignKeys('users');
