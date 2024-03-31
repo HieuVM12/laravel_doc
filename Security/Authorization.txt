@@ -1,0 +1,4 @@
+1. Laravel cung cấp hai cách chính để ủy quyền các hành động: Gates và Policies. 
+Gates cung cấp một cách tiếp cận đơn giản, dựa trên closures để ủy quyền, trong khi Policies nhóm logic xung quanh một mô hình cụ thể hoặc tài nguyên.
+
+2. Gates là những closures đơn giản xác định xem một người dùng có được ủy quyền thực hiện một hành động cụ thể hay không.

@@ -1,0 +1,8 @@
+1. 
+Facade Hash trong Laravel cung cấp việc mã hóa an toàn với Bcrypt và Argon2 để lưu trữ mật khẩu người dùng.
+
+2. Bcrypt là lựa chọn tuyệt vời cho việc mã hóa mật khẩu
+ví dụ : 
+  $request->user()->fill([
+            'password' => Hash::make($request->newPassword)
+        ])->save();

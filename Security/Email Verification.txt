@@ -1,0 +1,36 @@
+1. Nhiều ứng dụng web yêu cầu người dùng xác minh địa chỉ email của họ trước khi sử dụng ứng dụng.
+Thay vì buộc bạn phải triển khai lại tính năng này cho từng ứng dụng bạn tạo, Laravel cung cấp các dịch vụ tích hợp sẵn tiện lợi để gửi và xác minh các yêu cầu xác minh email.
+
+2. Chuẩn bị Model
+đảm bảo rằng model App\Models\User của bạn thực hiện hợp đồng Illuminate\Contracts\Auth\MustVerifyEmail:
+
+<?php
+
+namespace App\Models;
+
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+
+class User extends Authenticatable implements MustVerifyEmail
+{
+    use Notifiable;
+
+    // ...
+}
+
+3. thực hiện đăng ký một cách thủ công trong ứng dụng của mình thay vì sử dụng một gói khởi đầu, 
+bạn nên đảm bảo rằng bạn đang phát sự kiện Illuminate\Auth\Events\Registered sau khi đăng ký của người dùng thành công:
+
+use Illuminate\Auth\Events\Registered;
+event(new Registered($user));
+
+4. Chuẩn bị csdl:
+bảng users của bạn phải chứa một cột email_verified_at để lưu trữ ngày và giờ mà địa chỉ email của người dùng đã được xác minh. 
+Thông thường, điều này được bao gồm trong tệp di dời cơ sở dữ liệu mặc định của Laravel 0001_01_01_000000_create_users_table.php.
+
+5. The Email Verification Notice
+
+Route::get('/email/verify', function () {
+    return view('auth.verify-email');
+})->middleware('auth')->name('verification.notice');

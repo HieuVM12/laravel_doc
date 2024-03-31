@@ -1,0 +1,20 @@
+1. có thể đã viết một mục cấu hình cron cho mỗi công việc bạn cần lên lịch trên máy chủ của mình. 
+Tuy nhiên, điều này có thể nhanh chóng trở thành một vấn đề vì lịch trình công việc của bạn không còn nằm trong quản lý mã nguồn và bạn phải sử dụng SSH vào máy chủ của mình để xem các mục cron hiện có hoặc thêm các mục mới.
+
+2. Defining Schedules
+có thể định nghĩa tất cả các nhiệm vụ được lên lịch trong tệp routes/console.php
+
+Ví dụ:
+<?php
+
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schedule;
+
+Schedule::call(function () {
+    DB::table('recent_users')->delete();
+})->daily();
+
+Schedule::call(new DeleteRecentUsers)->daily();
+
+Nếu bạn muốn xem tổng quan về các nhiệm vụ được lên lịch của mình và thời gian tiếp theo chúng sẽ chạy, bạn có thể sử dụng lệnh Artisan schedule:list:
+php artisan schedule:list

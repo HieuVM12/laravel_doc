@@ -1,0 +1,36 @@
+1. Laravel cung cấp một cách tiếp cận đơn giản để giới hạn tốc độ (rate limiting), kết hợp với cache của ứng dụng,
+cung cấp một cách dễ dàng để hạn chế bất kỳ hành động nào trong một khoảng thời gian cụ thể.
+
+2. Cấu hình cache
+rate limiter sử dụng cache mặc định của ứng dụng của bạn như được xác định bởi khóa mặc định trong tệp cấu hình cache của ứng dụng.
+ có thể chỉ định driver cache mà rate limiter nên sử dụng bằng cách xác định một khóa limiter trong tệp cấu hình cache của ứng dụn
+ 'default' => env('CACHE_STORE', 'database'),
+'limiter' => 'redis',
+
+3. Basic Usage
+Facade Illuminate\Support\Facades\RateLimiter có thể được sử dụng để tương tác với rate limiter.
+Phương thức đơn giản nhất được cung cấp bởi rate limiter là phương thức attempt, nó giới hạn tốc độ của một callback được cung cấp trong một số giây nhất định.
+
+use Illuminate\Support\Facades\RateLimiter;
+ 
+$executed = RateLimiter::attempt(
+    'send-message:'.$user->id,
+    $perMinute = 5,
+    function() {
+        // Send message...
+    }
+);
+ 
+if (! $executed) {
+  return 'Too many messages sent!';
+}
+có thể cung cấp một đối số thứ tư cho phương thức attempt, đó là "tỷ lệ suy giảm", hoặc số giây cho đến khi các cố gắng khả dụng được đặt lại. Ví dụ, chúng ta có thể sửa đổi ví dụ trên để cho phép năm cố gắng mỗi hai phút
+$executed = RateLimiter::attempt(
+    'send-message:'.$user->id,
+    $perTwoMinutes = 5,
+    function() {
+        // Gửi tin nhắn...
+    },
+    $decayRate = 120,
+);
+

@@ -1,0 +1,17 @@
+1. Mục đích của dịch vụ mã hóa của Laravel là cung cấp một giao diện đơn giản, 
+thuận tiện để mã hóa và giải mã văn bản thông qua OpenSSL sử dụng mã hóa AES-256 và AES-128.
+Tất cả các giá trị được mã hóa của Laravel đều được ký bằng một mã xác thực tin nhắn (MAC) để giá trị cơ bản của chúng không thể được sửa đổi hoặc can thiệp sau khi được mã hóa.
+
+2. Cấu hình
+phải đặt tùy chọn cấu hình key trong tệp cấu hình của bạn config/app.php.
+ Giá trị cấu hình này được điều khiển bởi biến môi trường APP_KEY. 
+
+  php artisan key:generate
+
+3. Encrypting a Value
+        $request->user()->fill([
+            'token' => Crypt::encryptString($request->token),
+        ])->save();
+
+4. Decrypting a Value
+$decrypted = Crypt::decryptString($encryptedValue);

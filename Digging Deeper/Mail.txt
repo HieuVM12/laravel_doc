@@ -1,0 +1,18 @@
+1.  Laravel cung cấp một API gửi email sạch sẽ, đơn giản được nâng cấp bởi thành phần Mailer của Symfony phổ biến
+Laravel và Symfony Mailer cung cấp các driver để gửi email qua SMTP, Mailgun, Postmark, Amazon SES và sendmail, cho phép bạn nhanh chóng bắt đầu gửi thư qua dịch vụ địa phương hoặc dựa trên đám mây mà bạn chọn.
+
+2. Cấu hình
+Dịch vụ email của Laravel có thể được cấu hình thông qua tệp cấu hình config/mail.php của ứng dụng
+Mỗi mailer được cấu hình trong tệp này có thể có cấu hình riêng và thậm chí có "giao vận" riêng, cho phép ứng dụng của bạn sử dụng các dịch vụ email khác nhau để gửi các email cụ thể
+
+Ví dụ, ứng dụng của bạn có thể sử dụng Postmark để gửi email giao dịch trong khi sử dụng Amazon SES để gửi email hàng loạt.
+
+3. MailerSend Driver
+composer require mailersend/laravel-driver
+
+cấu hình file .env
+MAIL_MAILER=mailersend
+MAIL_FROM_ADDRESS=app@yourdomain.com
+MAIL_FROM_NAME="App Name"
+ 
+MAILERSEND_API_KEY=your-api-key

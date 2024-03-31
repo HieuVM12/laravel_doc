@@ -1,0 +1,6 @@
+1. Laravel cung cấp tính năng phân trang thuận tiện, dễ sử dụng cho các bản ghi cơ sở dữ liệu mà không cần cấu hình.
+
+2. Cách sử dụng
+ return view('user.index', [
+            'users' => DB::table('users')->paginate(15)
+        ]);

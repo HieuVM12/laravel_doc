@@ -1,0 +1,19 @@
+1. Gói (Package) là cách chính để thêm chức năng vào Laravel.
+Một số gói là độc lập, có nghĩa là chúng hoạt động với bất kỳ framework PHP nào.
+
+2. Package Discovery
+
+Tệp bootstrap/providers.php của một ứng dụng Laravel chứa danh sách các nhà cung cấp dịch vụ mà Laravel nên tải.
+Tuy nhiên, thay vì yêu cầu người dùng thêm nhà cung cấp dịch vụ của bạn vào danh sách này, 
+bạn có thể xác định nhà cung cấp trong phần mở rộng của tệp composer.json của gói của bạn để Laravel tự động tải nó.
+
+"extra": {
+    "laravel": {
+        "providers": [
+            "Barryvdh\\Debugbar\\ServiceProvider"
+        ],
+        "aliases": {
+            "Debugbar": "Barryvdh\\Debugbar\\Facade"
+        }
+    }
+},

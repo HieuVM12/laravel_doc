@@ -1,0 +1,17 @@
+1. có thể tạo thư mục lang bằng lệnh Artisan lang:publish.
+php artisan lang:publish
+
+2. Tính năng đa ngôn ngữ của Laravel cung cấp một cách tiện lợi để lấy chuỗi văn bản bằng nhiều ngôn ngữ khác nhau, 
+cho phép bạn dễ dàng hỗ trợ nhiều ngôn ngữ trong ứng dụng của mình.
+
+3. phương pháp Laravel sử dụng để quản lý chuỗi dịch cho các tính năng Laravel tích hợp sẵn như thông báo lỗi xác thực:
+/lang
+    /en
+        messages.php
+    /es
+        messages.php
+
+4. chuỗi dịch có thể được định nghĩa trong các tệp JSON được đặt trong thư mục lang.
+/lang
+    en.json
+    es.json

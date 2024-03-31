@@ -1,0 +1,6 @@
+Laravel làm cho việc tương tác với cơ sở dữ liệu cực kỳ đơn giản trên nhiều cơ sở dữ liệu được hỗ trợ
+1. Cấu hình cho các dịch vụ cơ sở dữ liệu của Laravel nằm trong config/database.php
+
+2. truy vấn SQL
+
+ $users = DB::select('select * from users where active = ?', [1]);

@@ -1,0 +1,15 @@
+1. Laravel cung cấp một API diễn giải, tối giản xung quanh thành phần Process của Symfony, 
+cho phép bạn gọi các quy trình bên ngoài từ ứng dụng Laravel của mình một cách tiện lợi.
+
+2. Invoking Processes
+có thể sử dụng các phương thức run và start được cung cấp bởi facade Process.
+use Illuminate\Support\Facades\Process;
+
+$result = Process::run('ls -la');
+
+return $result->output();
+
+Ném ngoại lệ
+$result = Process::run('ls -la')->throw();
+ 
+$result = Process::run('ls -la')->throwIf($condition);

@@ -1,0 +1,32 @@
+1. Laravel cung cấp khả năng gửi thông báo qua nhiều kênh giao tiếp khác nhau như email, SMS (qua Vonage), và Slack
+
+2.  còn có các kênh thông báo được xây dựng bởi cộng đồng để gửi thông báo qua nhiều kênh khác nhau. 
+
+3. Thông báo cũng có thể được lưu trữ trong cơ sở dữ liệu để hiển thị trên giao diện web của bạn.
+
+4. Việc tạo thông báo trong Laravel được thực hiện thông qua việc tạo một lớp thông báo mới, thường được lưu trữ trong thư mục app/Notifications.
+Bạn có thể tạo một lớp thông báo mới bằng cách chạy lệnh Artisan make:notification.
+
+php artisan make:notification InvoicePaid
+
+5. sử dụng Notifiable Trait
+
+<?php
+ 
+namespace App\Models;
+ 
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+ 
+class User extends Authenticatable
+{
+    use Notifiable;
+}
+
+6. sử dụng Notification Facade
+
+use Illuminate\Support\Facades\Notification;
+ 
+Notification::send($users, new InvoicePaid($invoice));
+
+Notification::sendNow($developers, new DeploymentCompleted($deployment));

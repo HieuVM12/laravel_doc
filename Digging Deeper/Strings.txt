@@ -1,0 +1,2 @@
+1. Laravel bao gồm một loạt các hàm để thao tác các giá trị chuỗi. 
+Nhiều trong số các hàm này được sử dụng bởi framework một cách tự động; tuy nhiên, bạn có thể tự do sử dụng chúng trong ứng dụng của bạn nếu bạn thấy chúng tiện lợi.

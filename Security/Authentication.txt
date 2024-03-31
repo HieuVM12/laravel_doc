@@ -1,0 +1,23 @@
+1. Laravel cung cấp các công cụ để triển khai tính năng xác thực người dùng (authentication) một cách nhanh chóng, an toàn và dễ dàng thông qua các "guards" và "providers".
+
+2. Guards xác định cách người dùng được xác thực cho mỗi yêu cầu, trong khi providers xác định cách lấy thông tin người dùng từ nơi lưu trữ.
+
+3.  Tệp cấu hình xác thực của ứng dụng của bạn được đặt tại config/auth.php.
+
+4. Việc xây dựng schema cơ sở dữ liệu cho mô hình User và các bảng liên quan cũng rất quan trọng. 
+Laravel đi kèm với các gói như Laravel Breeze, Jetstream và Fortify để giúp bạn triển khai hệ thống xác thực một cách dễ dàng và hiệu quả. 
+Các gói này cung cấp các template, controllers và routes để triển khai tính năng xác thực trong ứng dụng Laravel
+
+5. Nếu bạn xây dựng một ứng dụng web truyền thống, bạn có thể sử dụng Laravel Breeze hoặc Laravel Jetstream. 
+Nếu bạn cần triển khai tính năng xác thực cho một API, Laravel Sanctum có thể là lựa chọn phù hợp hơn. 
+Nó giúp quản lý quy trình xác thực cả từ web browser lẫn từ các request API.
+
+6. Retrieving the Authenticated User
+
+use Illuminate\Support\Facades\Auth;
+ 
+// Retrieve the currently authenticated user...
+$user = Auth::user();
+ 
+// Retrieve the currently authenticated user's ID...
+$id = Auth::id();

@@ -1,0 +1,9 @@
+1. query builder cung cấp một giao diện tiện lợi, mượt mà để tạo và chạy các truy vấn cơ sở dữ liệu.
+
+2. sử dụng để thực hiện hầu hết các thao tác cơ sở dữ liệu trong ứng dụng của bạn và hoạt động hoàn hảo với tất cả các hệ thống cơ sở dữ liệu được hỗ trợ bởi Laravel.
+
+3.  sử dụng ràng buộc tham số PDO để bảo vệ ứng dụng của bạn khỏi các cuộc tấn công injection SQL.
+Không cần phải làm sạch hoặc kiểm tra chuỗi được truyền vào trình tạo truy vấn như các ràng buộc truy vấn.
+
+ví dụ:
+$users = DB::table('users')->get();

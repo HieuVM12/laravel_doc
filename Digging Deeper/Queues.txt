@@ -1,0 +1,23 @@
+1. Laravel cho phép bạn dễ dàng tạo ra các công việc được đưa vào hàng đợi để xử lý ở nền
+Bằng cách di chuyển các tác vụ tốn thời gian vào hàng đợi, ứng dụng của bạn có thể phản hồi các yêu cầu web với tốc độ nhanh chóng và cung cấp trải nghiệm người dùng tốt hơn cho khách hàng.
+
+2.Hàng đợi của Laravel cung cấp một API hàng đợi thống nhất qua một loạt các backend hàng đợi khác nhau, chẳng hạn như Amazon SQS, Redis, hoặc thậm chí là một cơ sở dữ liệu quan hệ.
+
+3. Các tùy chọn cấu hình hàng đợi của Laravel được lưu trữ trong tệp cấu hình config/queue.php
+
+4. Tùy chọn này xác định các kết nối đến các dịch vụ hàng đợi backend như Amazon SQS, Beanstalk, hoặc Redis. 
+Tuy nhiên, mỗi kết nối hàng đợi có thể có nhiều "hàng đợi" khác nhau, mà có thể được coi là các ngăn xếp hoặc đống khác nhau của các công việc trong hàng đợi.
+
+5. nếu bạn gửi một công việc mà không rõ ràng xác định hàng đợi nào nó nên được gửi đến, công việc sẽ được đặt trên hàng đợi được xác định trong thuộc tính hàng đợi của cấu hình kết nối:
+use App\Jobs\ProcessPodcast;
+ 
+// This job is sent to the default connection's default queue...
+ProcessPodcast::dispatch();
+ 
+// This job is sent to the default connection's "emails" queue...
+ProcessPodcast::dispatch()->onQueue('emails');
+
+6. đẩy các công việc vào hàng đợi cao, bạn có thể chạy một người làm việc mà cung cấp ưu tiên xử lý cao hơn cho chúng:
+
+php artisan queue:work --queue=high,default
+

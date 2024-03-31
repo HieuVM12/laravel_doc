@@ -1,0 +1,32 @@
+1. Laravel cung cấp một API tối giản, mạnh mẽ xung quanh thư viện Guzzle HTTP client, cho phép bạn nhanh chóng thực hiện các yêu cầu HTTP để giao tiếp với các ứng dụng web khác.
+
+2.Wrapper của Laravel quanh Guzzle tập trung vào các trường hợp sử dụng phổ biến nhất và mang lại trải nghiệm phát triển tuyệt vời.
+
+3.Để thực hiện các yêu cầu, bạn có thể sử dụng các phương thức head, get, post, put, patch và delete được cung cấp bởi facade Http.
+
+Ví dụ: 
+use Illuminate\Support\Facades\Http;
+ 
+$response = Http::get('http://example.com');
+
+$response->body(): Trả về nội dung của phản hồi dưới dạng chuỗi.
+$response->json($key = null, $default = null): Trả về nội dung của phản hồi dưới dạng mảng hoặc giá trị mặc định nếu không có.
+$response->object(): Trả về nội dung của phản hồi dưới dạng đối tượng.
+$response->collect($key = null): Trả về nội dung của phản hồi dưới dạng Collection.
+$response->status(): Trả về mã trạng thái HTTP của phản hồi.
+$response->successful(): Xác định xem yêu cầu có thành công không.
+$response->redirect(): Xác định xem yêu cầu đã bị chuyển hướng không.
+$response->failed(): Xác định xem yêu cầu có thất bại không.
+$response->clientError(): Xác định xem yêu cầu có lỗi phía máy khách không.
+$response->header($header): Trả về giá trị của một tiêu đề cụ thể của phản hồi.
+$response->headers(): Trả về tất cả các tiêu đề của phản hồi dưới dạng mảng.
+
+4. Đối tượng Illuminate\Http\Client\Response cũng thực hiện giao diện ArrayAccess trong PHP, cho phép bạn truy cập trực tiếp vào dữ liệu phản hồi JSON:
+return Http::get('http://example.com/users/1')['name'];
+
+5. Request Data
+Phương thức get:
+$response = Http::get('http://example.com/users', [
+    'name' => 'Taylor',
+    'page' => 1,
+]);
