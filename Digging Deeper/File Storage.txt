@@ -1,0 +1,14 @@
+1. Laravel cung cấp 1 cách dễ dang để lưu trữ file thông qua File Storage
+
+2. Được cấu hình trong config/filesystems.php:
+
+use Illuminate\Support\Facades\Storage;
+
+Storage::disk('local')->put('example.txt', 'Contents');
+
+3. Driver Local
+Khi sử dụng driver local, tất cả các hoạt động tệp đều là tương đối với thư mục gốc được xác định trong tệp cấu hình hệ thống tệp của bạn.
+Theo mặc định, giá trị này được đặt thành thư mục storage/app. Do đó, phương thức sau sẽ viết vào storage/app/example.txt:
+
+use Illuminate\Support\Facades\Storage;
+Storage::disk('local')->put('example.txt', 'Nội dung');

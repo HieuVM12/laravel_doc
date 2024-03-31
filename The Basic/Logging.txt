@@ -1,0 +1,17 @@
+1. Laravel cung cấp các dịch vụ ghi nhật ký mạnh mẽ cho phép bạn ghi nhật ký thông báo vào tệp, nhật ký lỗi hệ thống và thậm chí tới Slack để thông báo cho toàn bộ nhóm của bạn.
+Laravel sử dụng thư viện Monolog
+
+2.Laravel sử dụng các "channel" để quản lý cách ghi thông tin log. Mỗi channel đại diện cho một cách cụ thể để ghi thông tin log.
+
+3. Cấu hình logging được thực hiện trong tệp cấu hình config/logging.php, cho phép bạn cấu hình các channel và driver tương ứng.
+
+4. Định cấu hình
+'stack' => [
+    'driver' => 'stack',
+    'name' => 'channel-name',
+    'channels' => ['single', 'slack'],
+],
+
+5. Dùng Log
+
+Log::debug('An informational message.');

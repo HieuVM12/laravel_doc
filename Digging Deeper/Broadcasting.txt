@@ -1,0 +1,15 @@
+1. Trong nhiều ứng dụng web hiện đại, WebSockets được sử dụng để triển khai giao diện người dùng cập nhật theo thời gian thực.
+Khi một số dữ liệu được cập nhật trên máy chủ, thông điệp thường được gửi qua kết nối WebSocket để xử lý bởi máy khách. 
+
+2. Các trình điều khiển được hỗ trợ
+Mặc định, Laravel bao gồm ba trình điều khiển phát sóng trên máy chủ để chọn: 
+Laravel Reverb, Pusher Channels và Ably.
+
+3. Cài đặt phía máy chủ
+
+php artisan install:broadcasting
+
+4. Cài đặt máy khách
+
+npm install --save-dev laravel-echo pusher-js
+npm run build

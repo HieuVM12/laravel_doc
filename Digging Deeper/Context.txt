@@ -1,0 +1,31 @@
+1. Laravel cung cấp tính năng "context" mạnh mẽ cho phép bạn ghi lại, lấy lại và chia sẻ thông tin qua các thành phần khác nhau của ứng dụng như yêu cầu, công việc và lệnh.
+
+2. Cách hoạt động
+
+<?php
+ 
+namespace App\Http\Middleware;
+ 
+use Closure;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Context;
+use Illuminate\Support\Str;
+use Symfony\Component\HttpFoundation\Response;
+ 
+class AddContext
+{
+    /**
+     * Handle an incoming request.
+     */
+    public function handle(Request $request, Closure $next): Response
+    {
+        Context::add('url', $request->url());
+        Context::add('trace_id', Str::uuid()->toString());
+ 
+        return $next($request);
+    }
+}
+Log::info('User authenticated.', ['auth_id' => Auth::id()]);
+
+kết quả nhận được:
+User authenticated. {"auth_id":27} {"url":"https://example.com/login","trace_id":"e04e1a11-e75c-4db3-b5b5-cfef4ef56697"}

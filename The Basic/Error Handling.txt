@@ -1,0 +1,29 @@
+1. Laravel cung cấp cách để quản lý và xử lý các ngoại lệ và lỗi trong ứng dụng.
+Có thể sử dụng withExceptions để báo cáo và hiển thị các ngoại lệ
+
+2. Xử lý ngoại lệ
+Sử dụng phương thức report để đăng ký các hàm xử lý ngoại lệ cụ thể dựa trên loại ngoại lệ.
+Ví dụ:
+->withExceptions(function (Exceptions $exceptions) {
+    $exceptions->report(function (InvalidOrderException $e) {
+        // ...
+    });
+})
+Sử dụng phương thức dontReport để chỉ định các loại ngoại lệ không cần báo cáo.
+Sử dụng context để thêm thông tin ngữ cảnh toàn cục vào các thông điệp nhật ký.
+
+
+3. Xử lý lỗi
+Sử dụng phương thức render để tùy chỉnh cách xử lý lỗi và trả về phản hồi HTTP.
+Có thể sử dụng shouldRenderJsonWhen để quyết định liệu phản hồi ngoại lệ sẽ được hiển thị dưới dạng JSON hay HTML.
+
+4. Hiển thị ngoại lệ
+
+use App\Exceptions\InvalidOrderException;
+use Illuminate\Http\Request;
+ 
+->withExceptions(function (Exceptions $exceptions) {
+    $exceptions->render(function (InvalidOrderException $e, Request $request) {
+        return response()->view('errors.invalid-order', [], 500);
+    });
+})

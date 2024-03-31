@@ -1,0 +1,20 @@
+1. Lớp sự kiện thường được lưu trữ trong thư mục app/Events, trong khi các trình lắng nghe của chúng được lưu trữ trong app/Listeners
+
+2. Để tạo ra các sự kiện và trình lắng nghe một 
+cách nhanh chóng, bạn có thể sử dụng các lệnh Artisan make:event và make:Listener
+php artisan make:event PodcastProcessed
+
+use App\Events\PodcastProcessed;
+ 
+class SendPodcastNotification
+{
+    /**
+     * Xử lý sự kiện đã cho.
+     */
+    public function handle(PodcastProcessed $event): void
+    {
+        // ...
+    }
+}
+
+

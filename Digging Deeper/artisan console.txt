@@ -1,0 +1,46 @@
+1. Artisan là giao diện dòng lệnh đi kèm với Laravel, cung cấp nhiều lệnh hữu ích để hỗ trợ việc xây dựng ứng dụng
+
+2. có thể sử dụng lệnh php artisan list để xem danh sách tất cả các lệnh Artisan có sẵn
+
+php artisan list
+
+3. Viết lệnh
+tạo lệnh: php artisan make:command SendEmails'
+
+<?php
+ 
+namespace App\Console\Commands;
+ 
+use App\Models\User;
+use App\Support\DripEmailer;
+use Illuminate\Console\Command;
+ 
+class SendEmails extends Command
+{
+    /**
+     * The name and signature of the console command.
+     *
+     * @var string
+     */
+    protected $signature = 'mail:send {user}';
+ 
+    /**
+     * The console command description.
+     *
+     * @var string
+     */
+    protected $description = 'Send a marketing email to a user';
+ 
+    /**
+     * Execute the console command.
+     */
+    public function handle(DripEmailer $drip): void
+    {
+        $drip->send(User::find($this->argument('user')));
+    }
+}
+
+php artisan mail:send {user}
+
+4. Đăng ký lệnh
+mặc định được đăng ký app/Console/Commands

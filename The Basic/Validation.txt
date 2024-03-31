@@ -7,3 +7,26 @@ $validatedData = $request->validate([
     'title' => ['required', 'unique:posts', 'max:255'],
     'body' => ['required'],
 ]);
+
+2. Hiển thị validation error
+Ví dụ: 
+<!-- /resources/views/post/create.blade.php -->
+ 
+<h1>Create Post</h1>
+ 
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+ 
+<!-- Create Post Form -->
+
+3. Tái taoj lai biểu mẫu
+$title = $request->old('title');
+
+4. Xác thực yêu cầu biểu mẫu

@@ -1,0 +1,38 @@
+1. Cache là một phần quan trọng trong việc tăng tốc độ hoạt động của ứng dụng web của bạn bằng cách lưu trữ dữ liệu đã truy vấn hoặc xử lý trong 
+một kho lưu trữ nhanh như Memcached hoặc Redis
+
+2.Laravel cung cấp một API thống nhất và dễ hiểu cho các backend cache khác nhau, giúp bạn tận dụng hiệu suất nhanh chóng của chúng.
+
+3. Cấu hình đặt trong config/cache.php
+
+4. Sử dụng db trình điều khiển bộ đêm, cần 1 bảng csdl chứa dữ liệu bộ đệm
+php artisan make:cache-table
+ 
+php artisan migrate
+
+5. Memcached yêu cầu cài đặt gói Memcached PECL  
+
+6. Redis cần cài đặt tiện ích mở rộng PhpRedis PHP qua PECL
+
+7. Sử dụng cache
+triển khai cơ bản
+<?php
+ 
+namespace App\Http\Controllers;
+ 
+use Illuminate\Support\Facades\Cache;
+ 
+class UserController extends Controller
+{
+    /**
+     * Show a list of all users of the application.
+     */
+    public function index(): array
+    {
+        $value = Cache::get('key');
+ 
+        return [
+            // ...
+        ];
+    }
+}
