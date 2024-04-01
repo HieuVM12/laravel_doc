@@ -1,0 +1,50 @@
+1. Khi xây dựng một API, bạn có thể cần một lớp chuyển đổi nằm giữa các model Eloquent và các phản hồi JSON được trả về thực sự đến người dùng
+
+2. tạo resource
+php artisan make:resource UserResource
+
+3. Một lớp resource biểu diễn một model duy nhất cần được biến đổi thành một cấu trúc JSON
+
+<?php
+
+namespace App\Http\Resources;
+
+use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\JsonResource;
+
+class UserResource extends JsonResource
+{
+    /**
+     * Transform the resource into an array.
+     *
+     * @return array<string, mixed>
+     */
+    public function toArray(Request $request): array
+    {
+        return [
+            'id' => $this->id,
+            'name' => $this->name,
+            'email' => $this->email,
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
+        ];
+    }
+}
+
+Mỗi lớp tài nguyên định nghĩa một phương thức toArray trả về mảng các thuộc tính cần được chuyển đổi thành JSON khi tài nguyên được trả về như một phản hồi từ một tuyến đường hoặc phương thức điều khiển.
+
+use App\Http\Resources\UserResource;
+use App\Models\User;
+
+Route::get('/user/{id}', function (string $id) {
+    return new UserResource(User::findOrFail($id));
+});
+
+4. Sử dụng collection
+use App\Http\Resources\UserResource;
+use App\Models\User;
+
+Route::get('/users', function () {
+    return UserResource::collection(User::all());
+});
+``

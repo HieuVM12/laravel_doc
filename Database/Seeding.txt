@@ -1,0 +1,40 @@
+1. Seeding giúp tạo mẫu dữ liệu cho db thông qua các file PHP
+
+2. Laravel cung cấp tính năng seeding cơ sở dữ liệu bằng cách sử dụng các seed class.
+
+3. Câus hình
+Tất cả các seed class được lưu trữ trong thư mục database/seeders.
+
+4. Tạo seeding
+
+php artisan make:seeder UserSeeder
+
+5. sửa đổi class DatabaseSeeder mặc định và thêm một câu lệnh insert vào cơ sở dữ liệu trong phương thức run:
+<?php
+
+namespace Database\Seeders;
+
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
+
+class DatabaseSeeder extends Seeder
+{
+    /**
+     * Run the database seeders.
+     */
+    public function run(): void
+    {
+        DB::table('users')->insert([
+            'name' => Str::random(10),
+            'email' => Str::random(10).'@example.com',
+            'password' => Hash::make('password'),
+        ]);
+    }
+}
+
+6. chạy seeding
+php artisan db:seed
+ 
+php artisan db:seed --class=UserSeeder

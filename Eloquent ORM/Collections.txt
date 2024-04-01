@@ -1,0 +1,11 @@
+1. Tất cả các phương thức trong Eloquent trả về một collection, thay vì một mảng. 
+Collection giúp xử lý dữ liệu một cách dễ dàng và linh hoạt.
+
+ví dụ :
+use App\Models\User;
+ 
+$users = User::where('active', 1)->get();
+ 
+foreach ($users as $user) {
+    echo $user->name;
+}

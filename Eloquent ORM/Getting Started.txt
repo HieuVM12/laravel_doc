@@ -1,0 +1,9 @@
+1. 
+Laravel bao gồm Eloquent, một bộ ánh xạ đối tượng-quan hệ (ORM) giúp việc tương tác với cơ sở dữ liệu trở nên dễ dàng 
+
+2. Khi sử dụng Eloquent, mỗi bảng cơ sở dữ liệu đều có một "Model" tương ứng được sử dụng để tương tác với bảng đó.
+Ngoài việc truy xuất bản ghi từ bảng cơ sở dữ liệu, các model Eloquent cũng cho phép bạn chèn, cập nhật và xóa bản ghi từ bảng đó.
+
+use App\Models\User;
+
+$users = User::all();

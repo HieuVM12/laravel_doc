@@ -1,0 +1,74 @@
+1. Eloquent hỗ trợ nhiều loại quan hệ giữa các model như One To One, One To Many, Many To Many, Has Many Through, etc,.. 
+Giúp việc tương tác với các bảng có nhiều quan hệ trong database trở nên dễ dàng.
+
+ví dụ:
+
+quan hệ 1 - 1: 
+<?php
+ 
+namespace App\Models;
+ 
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+ 
+class User extends Model
+{
+    /**
+     * Get the phone associated with the user.
+     */
+    public function phone(): HasOne
+    {
+        return $this->hasOne(Phone::class);
+    }
+}
+
+<?php
+ 
+namespace App\Models;
+ 
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+ 
+class Phone extends Model
+{
+    /**
+     * Get the user that owns the phone.
+     */
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
+}
+
+3. quan hệ 1-n
+<?php
+ 
+namespace App\Models;
+ 
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+ 
+class Post extends Model
+{
+    /**
+     * Get the comments for the blog post.
+     */
+    public function comments(): HasMany
+    {
+        return $this->hasMany(Comment::class);
+    }
+}
+
+4. quan hệ n-n 
+thêm 1 bảng liên kết giữa 2 bảng có qhe n-n
+users
+    id - integer
+    name - string
+ 
+roles
+    id - integer
+    name - string
+ 
+role_user
+    user_id - integer
+    role_id - integer

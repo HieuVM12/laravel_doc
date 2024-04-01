@@ -1,0 +1,80 @@
+1. Redis là một hệ thống lưu trữ key-value mã nguồn mở và tiên tiến
+Nó thường được gọi là một máy chủ cấu trúc dữ liệu vì các key có thể chứa chuỗi, bảng băm, danh sách, tập hợp và tập hợp được sắp xếp.
+
+2. Có thể cài đặt gói predis/predis qua Composer. 
+composer require predis/predis:^2.0
+
+3. Cấu hình 
+có thể cấu hình các thiết lập Redis của ứng dụng thông qua tệp cấu hình config/database.php
+
+'redis' => [
+ 
+    'client' => env('REDIS_CLIENT', 'phpredis'),
+ 
+    'options' => [
+        'cluster' => env('REDIS_CLUSTER', 'redis'),
+        'prefix' => env('REDIS_PREFIX', Str::slug(env('APP_NAME', 'laravel'), '_').'_database_'),
+    ],
+ 
+    'default' => [
+        'url' => env('REDIS_URL'),
+        'host' => env('REDIS_HOST', '127.0.0.1'),
+        'username' => env('REDIS_USERNAME'),
+        'password' => env('REDIS_PASSWORD'),
+        'port' => env('REDIS_PORT', '6379'),
+        'database' => env('REDIS_DB', '0'),
+    ],
+ 
+    'cache' => [
+        'url' => env('REDIS_URL'),
+        'host' => env('REDIS_HOST', '127.0.0.1'),
+        'username' => env('REDIS_USERNAME'),
+        'password' => env('REDIS_PASSWORD'),
+        'port' => env('REDIS_PORT', '6379'),
+        'database' => env('REDIS_CACHE_DB', '1'),
+    ],
+ 
+],
+
+4. Mỗi máy chủ Redis được xác định trong tệp cấu hình của bạn bắt buộc phải có tên, máy chủ và cổng trừ khi bạn xác định một URL duy nhất để thể hiện kết nối Redis:
+'redis' => [
+ 
+    'client' => env('REDIS_CLIENT', 'phpredis'),
+ 
+    'options' => [
+        'cluster' => env('REDIS_CLUSTER', 'redis'),
+        'prefix' => env('REDIS_PREFIX', Str::slug(env('APP_NAME', 'laravel'), '_').'_database_'),
+    ],
+ 
+    'default' => [
+        'url' => 'tcp://127.0.0.1:6379?database=0',
+    ],
+ 
+    'cache' => [
+        'url' => 'tls://user:password@127.0.0.1:6380?database=1',
+    ],
+ 
+],
+
+5. Cách dùng
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redis;
+
+class RedisController extends Controller
+{
+    /**
+     * Lưu dữ liệu vào Redis.
+     */
+    public function storeData(Request $request)
+    {
+        $key = $request->input('key');
+        $value = $request->input('value');
+
+        // Lưu giá trị vào Redis với key đã chỉ định
+        Redis::set($key, $value);
+
+        return response()->json(['message' => 'Data stored successfully']);
+    }
+}

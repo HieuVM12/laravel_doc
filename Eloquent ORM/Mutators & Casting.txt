@@ -1,0 +1,21 @@
+1. Cho phép thay đổi giá trị của các thuộc tính trước khi lưu vào database hoặc sau khi lấy ra từ database thông qua Mutator và Cast.
+
+<?php
+ 
+namespace App\Models;
+ 
+use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Model;
+ 
+class User extends Model
+{
+    /**
+     * Get the user's first name.
+     */
+    protected function firstName(): Attribute
+    {
+        return Attribute::make(
+            get: fn (string $value) => ucfirst($value),
+        );
+    }
+}
