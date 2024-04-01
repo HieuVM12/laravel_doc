@@ -1,0 +1,10 @@
+1. Laravel hỗ trợ viết test với PHPUnit và Pest được cấu hình sẵn trong phpunit.xml.
+
+2. Có thể tạo test với các câu lệnh:
+
+php artisan make:test UserTest
+
+Một tệp ExampleTest.php được cung cấp trong cả hai thư mục kiểm thử Feature và Unit. 
+Sau khi cài đặt một ứng dụng Laravel mới, thực thi các lệnh vendor/bin/pest, vendor/bin/phpunit, hoặc php artisan test để chạy các kiểm thử
+
+php artisan test

@@ -1,0 +1,25 @@
+1. Laravel cung cấp một loạt các công cụ và phát biểu hữu ích để làm cho việc kiểm thử các ứng dụng dựa trên cơ sở dữ liệu dễ dàng hơn.
+
+ví dụ:
+
+<?php
+ 
+namespace Tests\Feature;
+ 
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
+ 
+class ExampleTest extends TestCase
+{
+    use RefreshDatabase;
+ 
+    /**
+     * A basic functional test example.
+     */
+    public function test_basic_example(): void
+    {
+        $response = $this->get('/');
+ 
+        // ...
+    }
+}

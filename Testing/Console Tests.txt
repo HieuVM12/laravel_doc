@@ -1,0 +1,9 @@
+1. Laravel cung cấp một API đơn giản để kiểm thử các lệnh console tùy chỉnh của ứng dụng
+
+/**
+ * Test a console command.
+ */
+public function test_console_command(): void
+{
+  $this->artisan('inspire')->assertExitCode(0);
+}

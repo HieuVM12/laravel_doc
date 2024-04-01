@@ -1,0 +1,1 @@
+1. Khi kiểm thử các ứng dụng Laravel, bạn có thể muốn "mock" một số khía cạnh của ứng dụng của mình để chúng không thực sự được thực hiện trong một bài kiểm thử cụ thể
